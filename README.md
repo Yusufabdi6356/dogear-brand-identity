@@ -81,6 +81,22 @@ The responsive website has nine pages and a shared design system:
 - Interactive cart controls, saved books, event RSVPs, streak logging, and newsletter feedback
 - Client-side sign-in and sign-up experience with native form validation
 
+## Social media system
+
+<div align="center">
+  <a href="https://yusufabdi6356.github.io/dogear-brand-identity/social-media.html">
+    <img src="screenshots/social.png" alt="dogear social media system with reusable post templates" width="900">
+  </a>
+</div>
+
+The social system turns the brand into a consistent, recognisable feed. It includes reusable square-post and story layouts for staff picks, reading streaks, events, quotes, new arrivals, and Folio moments.
+
+- **Feed rhythm:** green, white, dark, then Sunny yellow keeps the grid varied but recognisable.
+- **Folio cadence:** the mascot appears at least every third post to make the brand feel personal and encouraging.
+- **Format-ready:** templates are designed to adapt to both feed and story content without losing the visual system.
+
+[Open the social media templates](https://yusufabdi6356.github.io/dogear-brand-identity/social-media.html)
+
 ## Brand system
 
 <img src="screenshots/palette.svg" alt="dogear color palette" width="880">
