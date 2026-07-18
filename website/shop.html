@@ -19,6 +19,8 @@
     background: var(--mist); border: 2px solid var(--border); border-radius: 14px; padding: 12px 16px;
     font-weight: 700; color: var(--slate); font-size: 14.5px;
   }
+  .toolbar .search input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; }
+  .toolbar .search input::placeholder { color: var(--slate); opacity: 1; }
   .toolbar select {
     font-family: var(--body); font-weight: 800; font-size: 14px; color: var(--ink);
     background: var(--cloud); border: 2px solid var(--border); border-radius: 12px; padding: 11px 14px;
@@ -60,7 +62,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.5 13h-9L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
           <i class="badge">2</i>
         </a>
-        <span class="avatar" aria-hidden="true">Y</span>
+        <div class="auth-actions"><a class="auth-link" href="signin.html">Sign in</a><a class="auth-link primary" href="signup.html">Sign up</a></div>
         <button class="menu-btn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -78,12 +80,12 @@
 
 <div class="wrap">
   <div class="toolbar">
-    <div class="search">⌕ &nbsp;Search titles, authors, vibes…</div>
-    <select aria-label="Sort books">
-      <option>Sort: Staff favorites</option>
-      <option>Newest first</option>
-      <option>Price: low to high</option>
-      <option>Most folded</option>
+    <label class="search" for="book-search">⌕ <input id="book-search" data-book-search type="search" placeholder="Search titles, authors, vibes…" aria-label="Search books"></label>
+    <select aria-label="Sort books" data-book-sort>
+      <option value="staff">Sort: Staff favorites</option>
+      <option value="newest">Newest first</option>
+      <option value="price-low">Price: low to high</option>
+      <option value="price-high">Price: high to low</option>
     </select>
   </div>
   <div class="chips-row">
