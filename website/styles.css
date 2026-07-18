@@ -246,7 +246,7 @@ footer .base b { color: var(--leaf); }
   .mobile-menu a { display: block; padding: 13px 14px; border-radius: 14px; font-weight: 900; color: var(--slate); }
   .mobile-menu a[aria-current], .mobile-menu a:hover { background: var(--sprout); color: var(--forest); }
   .mobile-menu__account { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid var(--border); padding-top: 14px; }
-  .mobile-menu__account .auth-actions { display: grid; grid-template-columns: 1fr 1fr; grid-column: 1 / -1; gap: 10px; }
+  .mobile-menu__account .auth-actions { display: block; grid-column: 1 / -1; }
   .mobile-menu__account .auth-link { text-align: center; border: 2px solid var(--border); }
   .mobile-menu__account .auth-link.primary { border-color: var(--leaf); }
 }
