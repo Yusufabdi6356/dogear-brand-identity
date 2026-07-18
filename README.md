@@ -108,6 +108,18 @@ The core palette uses Leaf green for action, Sunny yellow for special moments, a
 - **The fold**: a Sunny yellow corner fold that marks something special
 - **The streak**: daily reading rewards at 7, 30, and 100 days
 
+## Next-level opportunities
+
+The current project is a polished front-end concept. These additions would turn it into a stronger product experience:
+
+1. **Real reader accounts** - connect sign-in and sign-up to a secure auth provider so saved books, carts, and streaks follow readers across devices.
+2. **Personalised discovery** - use genres, saves, and reading progress to create a focused "For your next chapter" shelf instead of a generic catalog.
+3. **A true checkout flow** - add pickup or delivery selection, promo/reward redemption, payment, and a reassuring confirmation screen.
+4. **Meaningful streak support** - introduce reminders, a visible streak-freeze balance, milestone celebrations, and an optional weekly reading goal.
+5. **Community momentum** - let readers RSVP, add events to their calendar, share a book club status, and see which local events are filling up.
+6. **Content operations** - connect books, events, and social templates to a small CMS so the team can keep the site current without editing code.
+7. **Measurement and iteration** - track discovery-to-save, save-to-cart, and streak completion journeys to refine the paths that most help readers return.
+
 ## Additional deliverables
 
 | Item | Link |

@@ -247,7 +247,7 @@ footer .base b { color: var(--leaf); }
   .mobile-menu a[aria-current], .mobile-menu a:hover { background: var(--sprout); color: var(--forest); }
   .mobile-menu__account { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid var(--border); padding-top: 14px; }
   .mobile-menu__account .auth-actions { display: block; grid-column: 1 / -1; }
-  .mobile-menu__account .auth-link { text-align: center; border: 2px solid var(--border); }
+  .mobile-menu__account .auth-link { display: block; width: 100%; text-align: center; border: 2px solid var(--border); }
   .mobile-menu__account .auth-link.primary { border-color: var(--leaf); }
 }
 @media (max-width: 760px) {
@@ -262,6 +262,8 @@ footer .base b { color: var(--leaf); }
   .nav .brand .bw { font-size: 21px; }
   .nav .brand img { height: 31px; }
   .icon-btn, .menu-btn { width: 38px; height: 38px; }
+  footer form { flex-wrap: wrap; }
+  footer form .btn { width: 100%; }
 }
 
 /* ---------- sauce: marquee band ---------- */
