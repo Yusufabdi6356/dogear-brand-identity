@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dogear — Social Media Templates</title>
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --leaf: #16A75C; --forest: #0E7C43; --sprout: #DCF5E7; --sunny: #FFC53D;
+    --ink: #14181F; --slate: #5A6472; --cloud: #FFFFFF; --mist: #F4F7F5; --border: #E3E9E5;
+    --coral: #FF6B6B; --violet: #8B5CF6; --sky: #38BDF8;
+    --display: "Fredoka", "Trebuchet MS", "Segoe UI", sans-serif;
+    --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { background: var(--mist); color: var(--ink); font-family: var(--body); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 3px solid var(--sunny); outline-offset: 3px; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .page-head { padding: 56px 0 12px; }
+  .kicker { display: inline-block; font-weight: 800; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); background: var(--sprout); border-radius: 999px; padding: 6px 14px; }
+  .page-head h1 { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 5vw, 58px); margin: 14px 0 12px; letter-spacing: -0.01em; }
+  .page-head p { color: var(--slate); max-width: 62ch; font-size: 17px; }
+  .page-head nav { margin-top: 16px; font-weight: 800; font-size: 14px; }
+  .page-head nav a { border-bottom: 3px solid var(--sunny); padding-bottom: 2px; margin-right: 20px; }
+
+  .board-row { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; padding: 36px 0 8px; }
+  .slot { display: flex; flex-direction: column; gap: 12px; }
+  .slot .cap { font-weight: 800; font-size: 12px; letter-spacing: 0.1em; color: var(--slate); }
+  .slot .cap b { color: var(--forest); }
+
+  /* ---------- square posts (1080×1080 @ 1/3) ---------- */
+  .sq { width: 340px; height: 340px; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 16px 34px rgba(20,24,31,0.12); }
+  .handlebar { position: absolute; left: 22px; bottom: 16px; display: flex; align-items: center; gap: 8px; font-weight: 900; font-size: 11px; letter-spacing: 0.06em; }
+  .handlebar img { width: 22px; height: 22px; border-radius: 6px; }
+
+  /* post 1 — new arrival */
+  .p1 { background: var(--leaf); color: #fff; padding: 26px; display: flex; flex-direction: column; }
+  .p1 .tag { font-weight: 900; font-size: 11px; letter-spacing: 0.2em; color: var(--sunny); }
+  .p1 h2 { font-family: var(--display); font-weight: 600; font-size: 34px; line-height: 1.08; margin-top: 8px; max-width: 8ch; }
+  .p1 .cover { position: absolute; right: 22px; bottom: 22px; width: 128px; height: 192px; border-radius: 8px 12px 12px 8px; background: linear-gradient(160deg,#FF6B6B,#E04848); padding: 14px 12px; box-shadow: inset 4px 0 0 rgba(0,0,0,0.15), 0 18px 30px rgba(0,0,0,0.28); transform: rotate(4deg); display: flex; flex-direction: column; color: #fff; }
+  .p1 .cover .cat { font-weight: 800; font-size: 7px; letter-spacing: 0.18em; opacity: 0.85; }
+  .p1 .cover b { font-family: var(--display); font-size: 15px; line-height: 1.15; margin-top: 6px; }
+  .p1 .cover small { font-weight: 700; font-size: 7.5px; margin-top: auto; opacity: 0.85; }
+  .p1 .mascot { position: absolute; left: 14px; bottom: -16px; width: 120px; transform: rotate(-6deg); }
+  .p1 .handlebar { left: auto; right: 22px; bottom: auto; top: 22px; color: #D9F3E5; }
+
+  /* post 2 — quote */
+  .p2 { background: var(--cloud); padding: 30px 26px; display: flex; flex-direction: column; }
+  .p2 .qmark { font-family: var(--display); font-size: 84px; line-height: 0.7; color: var(--sunny); }
+  .p2 blockquote { font-family: var(--display); font-weight: 500; font-size: 25px; line-height: 1.22; margin-top: 12px; max-width: 15ch; }
+  .p2 blockquote em { font-style: normal; color: var(--leaf); }
+  .p2 .who { margin-top: auto; font-weight: 800; font-size: 12px; color: var(--slate); }
+  .p2::after { content: ""; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 44px 44px 0; border-color: var(--sunny) var(--mist) transparent transparent; }
+
+  /* post 3 — streak milestone */
+  .p3 { background: var(--ink); color: #fff; padding: 26px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .p3 .tag { font-weight: 900; font-size: 11px; letter-spacing: 0.2em; color: var(--sunny); }
+  .p3 .big { font-family: var(--display); font-weight: 600; font-size: 96px; line-height: 1; color: var(--leaf); margin-top: 10px; }
+  .p3 .lbl { font-family: var(--display); font-weight: 500; font-size: 22px; }
+  .p3 p { font-weight: 700; font-size: 12.5px; color: #B8BFCA; margin-top: 10px; max-width: 26ch; }
+  .p3 .mascot { position: absolute; right: -12px; bottom: -14px; width: 110px; transform: rotate(-8deg); }
+  .p3 .days { display: flex; gap: 6px; margin-top: 14px; }
+  .p3 .days span { width: 22px; height: 22px; border-radius: 7px; background: #242C3B; }
+  .p3 .days span.lit { background: var(--sunny); }
+
+  /* ---------- stories (1080×1920 @ ~1/4) ---------- */
+  .story { width: 252px; height: 448px; border-radius: 22px; overflow: hidden; position: relative; box-shadow: 0 16px 34px rgba(20,24,31,0.12); }
+  .s1 { background: linear-gradient(170deg, #16A75C 0%, #0E7C43 100%); color: #fff; padding: 24px 20px; display: flex; flex-direction: column; }
+  .s1 .tag { font-weight: 900; font-size: 10px; letter-spacing: 0.2em; color: var(--sunny); }
+  .s1 h2 { font-family: var(--display); font-weight: 600; font-size: 30px; line-height: 1.1; margin-top: 8px; }
+  .s1 .date-blob { margin-top: 14px; background: #fff; color: var(--forest); border-radius: 14px; padding: 10px 14px; font-weight: 900; font-size: 12px; width: fit-content; }
+  .s1 .cover { margin: 22px auto 0; width: 118px; height: 176px; border-radius: 8px 12px 12px 8px; background: linear-gradient(160deg,#16A75C,#0A5C32); outline: 4px solid rgba(255,255,255,0.35); padding: 12px 11px; display: flex; flex-direction: column; box-shadow: 0 20px 34px rgba(0,0,0,0.3); }
+  .s1 .cover .cat { font-weight: 800; font-size: 6.5px; letter-spacing: 0.18em; opacity: 0.85; }
+  .s1 .cover b { font-family: var(--display); font-size: 13.5px; line-height: 1.15; margin-top: 6px; }
+  .s1 .cover small { font-weight: 700; font-size: 7px; margin-top: auto; opacity: 0.85; }
+  .s1 .cta { margin-top: auto; background: var(--sunny); color: var(--ink); border-radius: 12px; padding: 12px; text-align: center; font-weight: 900; font-size: 13px; box-shadow: 0 4px 0 #D9A222; }
+  .s2 { background: var(--cloud); padding: 24px 20px; display: flex; flex-direction: column; }
+  .s2 .tag { font-weight: 900; font-size: 10px; letter-spacing: 0.2em; color: var(--forest); }
+  .s2 h2 { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.12; margin-top: 8px; }
+  .s2 .poll { margin-top: 18px; display: grid; gap: 10px; }
+  .s2 .poll div { border: 2px solid var(--border); border-radius: 12px; padding: 12px 14px; font-weight: 800; font-size: 13px; position: relative; overflow: hidden; z-index: 0; }
+  .s2 .poll div i { position: absolute; inset: 0; background: var(--sprout); z-index: -1; border-radius: 10px; }
+  .s2 .poll .pct { float: right; color: var(--forest); }
+  .s2 .mascot { width: 130px; margin: auto auto 0; }
+  .s2 .foot { text-align: center; font-weight: 800; font-size: 11px; color: var(--slate); margin-top: 10px; }
+
+  /* post 4 — meme */
+  .p4 { background: var(--sunny); padding: 26px; display: flex; flex-direction: column; }
+  .p4 h2 { font-family: var(--display); font-weight: 600; font-size: 24px; line-height: 1.2; max-width: 15ch; }
+  .p4 .bubble { margin-top: 14px; background: var(--cloud); border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-weight: 800; font-size: 14px; width: fit-content; box-shadow: 0 6px 0 rgba(20,24,31,0.08); }
+  .p4 .mascot { position: absolute; right: 10px; bottom: -18px; width: 150px; }
+  .p4 .handlebar { color: #8A6A10; }
+
+  /* feed preview */
+  .feed { background: var(--cloud); border-radius: 24px; padding: 26px; max-width: 420px; box-shadow: 0 16px 34px rgba(20,24,31,0.1); }
+  .feed .prof { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .feed .prof img { width: 58px; height: 58px; border-radius: 50%; border: 3px solid var(--leaf); padding: 2px; }
+  .feed .prof b { font-weight: 900; font-size: 15px; display: block; }
+  .feed .prof span { font-weight: 700; font-size: 12.5px; color: var(--slate); }
+  .feed .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; border-radius: 12px; overflow: hidden; }
+  .feed .grid div { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 600; font-size: 12px; color: #fff; text-align: center; padding: 6px; line-height: 1.15; }
+
+  .rules { padding: 40px 0 72px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .rule { background: var(--cloud); border-radius: 18px; padding: 22px; border: 2px solid var(--border); }
+  .rule h4 { font-family: var(--display); font-weight: 600; font-size: 18px; margin-bottom: 8px; }
+  .rule p { font-size: 14px; color: var(--slate); }
+  @media (max-width: 760px) { .rules { grid-template-columns: 1fr; } .board-row { justify-content: center; } }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="wrap">
+    <span class="kicker">SOCIAL MEDIA · TEMPLATE SYSTEM</span>
+    <h1>Loud enough to stop a thumb.</h1>
+    <p>Six reusable templates for Instagram and TikTok covers. One brand color, one
+    mascot, huge friendly type. Folio appears in every third post — familiar, never
+    wallpaper. Shown at reduced size; production files are 1080×1080 and 1080×1920.</p>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="brand-guidelines.html">Guidelines</a>
+      <a href="website/home.html">Website</a>
+      <a href="mobile-design.html">Mobile</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="board-row">
+    <div class="slot">
+      <div class="sq p1">
+        <div class="handlebar"><span>@dogear.books</span></div>
+        <span class="tag">NEW THIS TUESDAY</span>
+        <h2>Fresh off the truck.</h2>
+        <div class="cover"><span class="cat">FICTION</span><b>Salt Roads Home</b><small>AMARA DENG</small></div>
+        <img class="mascot" src="logo/mascot.svg" alt="">
+      </div>
+      <span class="cap"><b>01 · NEW ARRIVAL</b> — SQUARE 1080×1080</span>
+    </div>
+
+    <div class="slot">
+      <div class="sq p2">
+        <div class="qmark">“</div>
+        <blockquote>The book you'll still be <em>thinking about</em> in March.</blockquote>
+        <div class="who">AMINA · HEAD BOOKSELLER</div>
+        <div class="handlebar"><img src="logo/app-icon.svg" alt=""><span>@dogear.books</span></div>
+      </div>
+      <span class="cap"><b>02 · QUOTE CARD</b> — SQUARE 1080×1080</span>
+    </div>
+
+    <div class="slot">
+      <div class="sq p3">
+        <span class="tag">STREAK MILESTONE</span>
+        <div class="big">30</div>
+        <div class="lbl">days of reading</div>
+        <p>Tag someone who hasn't broken their streak. Or someone who definitely has.</p>
+        <div class="days"><span class="lit"></span><span class="lit"></span><span class="lit"></span><span class="lit"></span><span class="lit"></span><span class="lit"></span><span></span></div>
+        <img class="mascot" src="logo/mascot.svg" alt="">
+      </div>
+      <span class="cap"><b>03 · STREAK POST</b> — SQUARE 1080×1080</span>
+    </div>
+
+    <div class="slot">
+      <div class="sq p4">
+        <div class="handlebar"><span>@dogear.books</span></div>
+        <h2>Me: just one chapter.</h2>
+        <div class="bubble">Me, at 3:14 AM: just one more chapter.</div>
+        <img class="mascot" src="logo/mascot.svg" alt="">
+      </div>
+      <span class="cap"><b>04 · RELATABLE / MEME</b> — SQUARE 1080×1080</span>
+    </div>
+
+    <div class="slot">
+      <div class="story s1">
+        <span class="tag">LIVE AT THE SHOP</span>
+        <h2>T. Okonkwo reads.</h2>
+        <div class="date-blob">THU JUL 23 · 19:00 · FREE</div>
+        <div class="cover"><span class="cat">ESSAYS</span><b>A Field Guide to Vanishing Light</b><small>T. OKONKWO</small></div>
+        <div class="cta">RSVP — 14 SEATS LEFT ↑</div>
+      </div>
+      <span class="cap"><b>05 · EVENT STORY</b> — 1080×1920</span>
+    </div>
+
+    <div class="slot">
+      <div class="story s2">
+        <span class="tag">WEEKLY POLL</span>
+        <h2>What are we reading this weekend?</h2>
+        <div class="poll">
+          <div><i style="right:38%"></i>Something sad on purpose <span class="pct">62%</span></div>
+          <div><i style="right:74%"></i>Dragons, obviously <span class="pct">26%</span></div>
+          <div><i style="right:88%"></i>Rereading a comfort book <span class="pct">12%</span></div>
+        </div>
+        <img class="mascot" src="logo/mascot.svg" alt="">
+        <div class="foot">@dogear.books · vote in stories</div>
+      </div>
+      <span class="cap"><b>06 · POLL STORY</b> — 1080×1920</span>
+    </div>
+
+    <div class="slot">
+      <div class="feed">
+        <div class="prof">
+          <img src="logo/app-icon.svg" alt="">
+          <div>
+            <b>dogear.books</b>
+            <span>Neighborhood bookstore · Reading, made a habit 🐶</span>
+          </div>
+        </div>
+        <div class="grid">
+          <div style="background:var(--leaf)">NEW BOOK</div>
+          <div style="background:var(--cloud); color:var(--ink); border:2px solid var(--border)">QUOTE</div>
+          <div style="background:var(--ink)">STREAK</div>
+          <div style="background:var(--sunny); color:var(--ink)">MEME</div>
+          <div style="background:var(--leaf)">EVENT</div>
+          <div style="background:var(--cloud); color:var(--ink); border:2px solid var(--border)">QUOTE</div>
+          <div style="background:var(--ink)">STREAK</div>
+          <div style="background:var(--leaf)">NEW BOOK</div>
+          <div style="background:var(--sunny); color:var(--ink)">POLL</div>
+        </div>
+      </div>
+      <span class="cap"><b>07 · FEED RHYTHM</b> — GREEN / WHITE / DARK / YELLOW ROTATION</span>
+    </div>
+  </div>
+
+  <div class="rules">
+    <div class="rule">
+      <h4>The 3-post rhythm</h4>
+      <p>Rotate green → white → dark → yellow so the profile grid reads as a pattern.
+      Never two dark posts in a row. Folio appears at least every third post.</p>
+    </div>
+    <div class="rule">
+      <h4>Type does the shouting</h4>
+      <p>One Fredoka headline per post, as big as it can go. Everything else is small
+      Nunito. If the headline needs a paragraph to work, it's not the headline.</p>
+    </div>
+    <div class="rule">
+      <h4>Voice: cheerful menace</h4>
+      <p>Duolingo taught the internet that mascots can tease. Folio encourages,
+      guilt-trips gently, and never punches down. Specific beats clever.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

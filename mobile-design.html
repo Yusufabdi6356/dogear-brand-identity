@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dogear — Mobile App Design</title>
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --leaf: #16A75C; --forest: #0E7C43; --sprout: #DCF5E7; --sunny: #FFC53D;
+    --ink: #14181F; --slate: #5A6472; --cloud: #FFFFFF; --mist: #F4F7F5; --border: #E3E9E5;
+    --coral: #FF6B6B; --violet: #8B5CF6; --sky: #38BDF8;
+    --display: "Fredoka", "Trebuchet MS", "Segoe UI", sans-serif;
+    --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  body { background: var(--mist); color: var(--ink); font-family: var(--body); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 3px solid var(--sunny); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .kicker { display: inline-block; font-weight: 800; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); background: var(--sprout); border-radius: 999px; padding: 6px 14px; }
+  .page-head { padding: 56px 0 8px; }
+  .page-head h1 { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 5vw, 58px); margin: 14px 0 12px; letter-spacing: -0.01em; }
+  .page-head p { color: var(--slate); max-width: 62ch; font-size: 17px; }
+  .page-head nav { margin-top: 16px; font-weight: 800; font-size: 14px; }
+  .page-head nav a { border-bottom: 3px solid var(--sunny); padding-bottom: 2px; margin-right: 20px; }
+
+  .stage { padding: 44px 0 80px; display: flex; gap: 36px; flex-wrap: wrap; justify-content: center; }
+  .slot { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .slot .cap { font-weight: 800; font-size: 12px; letter-spacing: 0.1em; color: var(--slate); }
+  .slot .cap b { color: var(--forest); }
+
+  .phone { width: 320px; height: 660px; background: var(--ink); border-radius: 42px; padding: 9px; box-shadow: 0 26px 52px rgba(20,24,31,0.22); }
+  .screen { position: relative; background: var(--cloud); border-radius: 34px; height: 100%; overflow: hidden; display: flex; flex-direction: column; }
+  .screen.green { background: var(--leaf); color: #fff; }
+  .island { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 88px; height: 24px; background: #0B0E14; border-radius: 18px; z-index: 5; }
+  .statusbar { display: flex; justify-content: space-between; padding: 14px 24px 4px; font-weight: 900; font-size: 11px; }
+  .scroll { flex: 1; overflow: hidden; padding: 6px 16px 0; display: flex; flex-direction: column; gap: 10px; }
+
+  /* shared app bits */
+  .chunk { display: block; text-align: center; background: var(--leaf); color: #fff; font-weight: 900; font-size: 14px; border-radius: 14px; padding: 13px; box-shadow: 0 4px 0 var(--forest); }
+  .chunk.sun { background: var(--sunny); color: var(--ink); box-shadow: 0 4px 0 #D9A222; }
+  .chunk.ghost { background: var(--cloud); color: var(--ink); border: 2px solid var(--border); box-shadow: 0 4px 0 var(--border); }
+  .tabbar { display: flex; border-top: 2px solid var(--mist); background: var(--cloud); padding: 10px 6px 20px; margin-top: auto; }
+  .tabbar div { flex: 1; text-align: center; font-weight: 900; font-size: 8.5px; letter-spacing: 0.08em; color: #A6AEB9; }
+  .tabbar div b { display: block; font-size: 17px; margin-bottom: 2px; font-weight: 400; }
+  .tabbar div.on { color: var(--forest); }
+  .tabbar .fab { position: relative; top: -18px; flex: 0 0 54px; }
+  .tabbar .fab span { display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%; background: var(--leaf); color: #fff; font-size: 22px; box-shadow: 0 4px 0 var(--forest); margin: 0 auto; }
+
+  /* s1 onboarding */
+  .ob { align-items: center; text-align: center; justify-content: center; gap: 16px; padding: 0 26px; }
+  .ob img.m { width: 168px; }
+  .ob h2 { font-family: var(--display); font-weight: 600; font-size: 30px; line-height: 1.1; color: #fff; }
+  .ob p { font-weight: 700; font-size: 14px; color: #D9F3E5; max-width: 24ch; }
+  .ob .dots { display: flex; gap: 7px; }
+  .ob .dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+  .ob .dots span.on { background: var(--sunny); width: 22px; border-radius: 999px; }
+  .ob .btns { width: 100%; display: grid; gap: 10px; padding-bottom: 26px; }
+
+  /* s2 home */
+  .apphead { display: flex; align-items: center; justify-content: space-between; }
+  .apphead .hi b { font-family: var(--display); font-weight: 600; font-size: 20px; display: block; line-height: 1.15; }
+  .apphead .hi span { font-weight: 800; font-size: 11px; color: var(--slate); letter-spacing: 0.08em; }
+  .apphead img { width: 40px; height: 40px; border-radius: 12px; }
+  .streak-card { background: var(--ink); color: #fff; border-radius: 18px; padding: 13px 14px; display: flex; align-items: center; gap: 14px; }
+  .streak-card .n { font-family: var(--display); font-weight: 600; font-size: 44px; color: var(--sunny); line-height: 1; }
+  .streak-card .t b { font-weight: 900; font-size: 13px; display: block; }
+  .streak-card .t span { font-weight: 700; font-size: 11px; color: #B8BFCA; }
+  .streak-card .week { display: flex; gap: 4px; margin-top: 7px; }
+  .streak-card .week i { width: 14px; height: 14px; border-radius: 5px; background: #242C3B; }
+  .streak-card .week i.lit { background: var(--leaf); }
+  .reading-now { border: 2px solid var(--border); border-radius: 18px; padding: 12px; display: flex; gap: 12px; align-items: center; }
+  .mini-cover { flex-shrink: 0; width: 56px; aspect-ratio: 2/3; border-radius: 5px 8px 8px 5px; padding: 7px 6px; color: #fff; display: flex; flex-direction: column; box-shadow: inset 3px 0 0 rgba(0,0,0,0.15); }
+  .mini-cover b { font-family: var(--display); font-weight: 600; font-size: 7.5px; line-height: 1.15; margin-top: 3px; }
+  .mini-cover .c { font-weight: 800; font-size: 5px; letter-spacing: 0.14em; opacity: 0.85; }
+  .reading-now .t { flex: 1; }
+  .reading-now b { font-weight: 900; font-size: 13.5px; display: block; }
+  .reading-now span { font-weight: 700; font-size: 11px; color: var(--slate); }
+  .bar { height: 8px; background: var(--mist); border-radius: 999px; margin-top: 8px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 64%; background: var(--leaf); border-radius: 999px; }
+  .h-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .h-row b { font-family: var(--display); font-weight: 600; font-size: 17px; }
+  .h-row span { font-weight: 900; font-size: 10.5px; color: var(--forest); letter-spacing: 0.08em; }
+  .shelf-row { display: flex; gap: 10px; }
+  .shelf-row .mini-cover { width: 30%; flex: 1; aspect-ratio: 2/2.6; }
+
+  /* s3 browse */
+  .searchbar { display: flex; align-items: center; gap: 8px; background: var(--mist); border: 2px solid var(--border); border-radius: 13px; padding: 11px 13px; font-weight: 800; font-size: 12px; color: var(--slate); }
+  .chiprow { display: flex; gap: 7px; flex-wrap: wrap; }
+  .chiprow span { font-weight: 800; font-size: 11px; border-radius: 999px; padding: 7px 13px; background: var(--mist); }
+  .chiprow span.on { background: var(--sprout); color: var(--forest); }
+  .lrow { display: flex; gap: 11px; align-items: center; border: 2px solid var(--border); border-radius: 14px; padding: 9px 11px; position: relative; overflow: hidden; }
+  .lrow.pick::after { content: ""; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 20px 20px 0; border-color: var(--sunny) var(--cloud) transparent transparent; }
+  .lrow .mini-cover { width: 38px; }
+  .lrow .t b { font-weight: 900; font-size: 11.5px; display: block; line-height: 1.25; }
+  .lrow .t span { font-weight: 700; font-size: 9.5px; color: var(--slate); }
+  .lrow .pr { margin-left: auto; font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--forest); }
+
+  /* s4 detail */
+  .backrow { display: flex; justify-content: space-between; font-weight: 900; font-size: 11px; color: var(--slate); letter-spacing: 0.08em; }
+  .dhero { background: var(--sprout); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
+  .dhero::after { content: ""; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 28px 28px 0; border-color: var(--sunny) var(--cloud) transparent transparent; }
+  .dhero .mini-cover { width: 96px; box-shadow: inset 3px 0 0 rgba(0,0,0,0.15), 0 14px 22px rgba(14,124,67,0.3); }
+  .dhero .mini-cover b { font-size: 11px; }
+  .dhero h3 { font-family: var(--display); font-weight: 600; font-size: 18px; text-align: center; line-height: 1.15; margin-top: 10px; }
+  .dhero .au { font-weight: 800; font-size: 10.5px; color: var(--slate); letter-spacing: 0.1em; }
+  .dhero .stars { color: var(--sunny); font-size: 13px; margin-top: 3px; }
+  .factrow { display: flex; gap: 8px; }
+  .factrow div { flex: 1; background: var(--mist); border-radius: 12px; padding: 8px 10px; font-weight: 800; font-size: 8px; letter-spacing: 0.08em; color: var(--slate); }
+  .factrow b { display: block; font-family: var(--display); font-weight: 600; font-size: 14px; color: var(--ink); letter-spacing: 0; }
+  .note { border-left: 4px solid var(--sunny); border-radius: 4px; padding: 4px 0 4px 12px; }
+  .note p { font-weight: 700; font-size: 11.5px; }
+  .note span { font-weight: 900; font-size: 9px; letter-spacing: 0.12em; color: var(--slate); }
+  .buyrow { display: flex; gap: 10px; align-items: stretch; }
+  .buyrow .pr { display: flex; align-items: center; font-family: var(--display); font-weight: 600; font-size: 18px; border: 2px solid var(--border); border-radius: 14px; padding: 0 14px; }
+  .buyrow .chunk { flex: 1; }
+
+  /* s5 streak */
+  .sk { text-align: center; }
+  .sk .mascot { width: 102px; margin: 0 auto; }
+  .sk .big { font-family: var(--display); font-weight: 600; font-size: 64px; color: var(--leaf); line-height: 1; }
+  .sk .lbl { font-weight: 900; font-size: 11px; letter-spacing: 0.16em; color: var(--slate); }
+  .cal { background: var(--mist); border-radius: 16px; padding: 11px; }
+  .cal .m { display: flex; justify-content: space-between; font-weight: 900; font-size: 10px; letter-spacing: 0.1em; color: var(--slate); margin-bottom: 9px; }
+  .cal .m b { color: var(--forest); }
+  .cal .days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+  .cal .days span { aspect-ratio: 1; border-radius: 8px; background: var(--cloud); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 9px; color: #A6AEB9; }
+  .cal .days span.lit { background: var(--leaf); color: #fff; }
+  .cal .days span.today { background: var(--sunny); color: var(--ink); }
+  .reward-strip { display: flex; gap: 8px; }
+  .reward-strip div { flex: 1; background: var(--sprout); border-radius: 12px; padding: 9px; font-weight: 800; font-size: 9px; color: var(--forest); text-align: center; }
+  .reward-strip b { display: block; font-family: var(--display); font-weight: 600; font-size: 16px; }
+  .reward-strip .locked { background: var(--mist); color: #A6AEB9; }
+
+  /* s6 profile */
+  .prof-head { display: flex; align-items: center; gap: 13px; }
+  .prof-head .av { width: 56px; height: 56px; border-radius: 50%; background: var(--violet); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 600; font-size: 22px; }
+  .prof-head b { font-family: var(--display); font-weight: 600; font-size: 19px; display: block; line-height: 1.1; }
+  .prof-head span { font-weight: 800; font-size: 10.5px; color: var(--slate); letter-spacing: 0.06em; }
+  .statgrid { display: flex; gap: 8px; }
+  .statgrid div { flex: 1; border: 2px solid var(--border); border-radius: 14px; padding: 10px; text-align: center; font-weight: 800; font-size: 8.5px; letter-spacing: 0.08em; color: var(--slate); }
+  .statgrid b { display: block; font-family: var(--display); font-weight: 600; font-size: 19px; color: var(--ink); }
+  .badges { display: flex; gap: 8px; }
+  .badges div { flex: 1; background: var(--mist); border-radius: 14px; padding: 10px 6px; text-align: center; font-weight: 800; font-size: 8px; color: var(--slate); }
+  .badges .em { font-size: 20px; display: block; margin-bottom: 3px; }
+  .badges .earned { background: #FFF3D6; }
+  .setrow { border: 2px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .setrow div { display: flex; justify-content: space-between; padding: 11px 14px; font-weight: 800; font-size: 12px; border-bottom: 2px solid var(--mist); }
+  .setrow div:last-child { border-bottom: none; }
+  .setrow span { color: #A6AEB9; }
+
+  @media (max-width: 720px) { .stage { gap: 26px; } .phone { width: 300px; height: 620px; } }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="wrap">
+    <span class="kicker">MOBILE APP · SIX KEY SCREENS</span>
+    <h1>The habit, pocket-sized.</h1>
+    <p>The dogear app is where the streak lives. White surfaces, one green, chunky
+    press-down buttons, and Folio exactly where encouragement is needed — Duolingo's
+    psychology with a bookstore's soul.</p>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="brand-guidelines.html">Guidelines</a>
+      <a href="website/home.html">Website</a>
+      <a href="social-media.html">Social</a>
+    </nav>
+  </div>
+</header>
+
+<div class="stage">
+
+  <!-- 01 onboarding -->
+  <div class="slot">
+    <div class="phone">
+      <div class="screen green">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="scroll ob">
+          <img class="m" src="logo/mascot.svg" alt="Folio waves hello">
+          <h2>Reading, made a habit.</h2>
+          <p>A few pages a day. Folio keeps count. You keep the streak.</p>
+          <div class="dots"><span class="on"></span><span></span><span></span></div>
+          <div class="btns">
+            <span class="chunk sun">Get started</span>
+            <span class="chunk" style="background:rgba(255,255,255,0.14); box-shadow:0 4px 0 rgba(0,0,0,0.18);">I have an account</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="cap"><b>01 · ONBOARDING</b> — /welcome</span>
+  </div>
+
+  <!-- 02 home -->
+  <div class="slot">
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="scroll">
+          <div class="apphead">
+            <div class="hi"><span>GOOD MORNING</span><b>Yusuf 👋</b></div>
+            <img src="logo/app-icon.svg" alt="dogear">
+          </div>
+          <div class="streak-card">
+            <div class="n">27</div>
+            <div class="t">
+              <b>day streak — personal best!</b>
+              <span>Read today to make it 28.</span>
+              <div class="week"><i class="lit"></i><i class="lit"></i><i class="lit"></i><i class="lit"></i><i class="lit"></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="reading-now">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#16A75C,#0E7C43)"><span class="c">ESSAYS</span><b>A Field Guide to Vanishing Light</b></div>
+            <div class="t">
+              <b>Continue reading</b>
+              <span>Chapter 8 · 64% done</span>
+              <div class="bar"><i></i></div>
+            </div>
+          </div>
+          <span class="chunk">Log today's pages</span>
+          <div class="h-row"><b>New this week</b><span>SEE ALL →</span></div>
+          <div class="shelf-row">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#FF6B6B,#E04848)"><span class="c">FICTION</span><b>Salt Roads Home</b></div>
+            <div class="mini-cover" style="background:linear-gradient(160deg,#38BDF8,#1E93D6)"><span class="c">POETRY</span><b>Weather for Beginners</b></div>
+            <div class="mini-cover" style="background:linear-gradient(160deg,#8B5CF6,#6D3EE0)"><span class="c">FANTASY</span><b>The Night Librarians</b></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div class="on"><b>⌂</b>HOME</div>
+          <div><b>⌕</b>BROWSE</div>
+          <div class="fab"><span>+</span></div>
+          <div><b>♥</b>SHELF</div>
+          <div><b>◔</b>STREAK</div>
+        </div>
+      </div>
+    </div>
+    <span class="cap"><b>02 · HOME</b> — /home</span>
+  </div>
+
+  <!-- 03 browse -->
+  <div class="slot">
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="scroll">
+          <div class="h-row"><b>Browse</b><span>3,214 BOOKS</span></div>
+          <div class="searchbar">⌕ &nbsp;Titles, authors, vibes…</div>
+          <div class="chiprow">
+            <span class="on">Everything</span><span>Fiction</span><span>Fantasy</span><span>Poetry</span><span>Kids</span>
+          </div>
+          <div class="lrow pick">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#16A75C,#0E7C43)"><span class="c">ESSAYS</span><b>A Field Guide…</b></div>
+            <div class="t"><b>A Field Guide to Vanishing Light</b><span>T. Okonkwo · ★ 4.8</span></div>
+            <div class="pr">$26</div>
+          </div>
+          <div class="lrow">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#FF6B6B,#E04848)"><span class="c">FICTION</span><b>Salt Roads Home</b></div>
+            <div class="t"><b>Salt Roads Home</b><span>Amara Deng · ★ 4.6</span></div>
+            <div class="pr">$24</div>
+          </div>
+          <div class="lrow">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#38BDF8,#1E93D6)"><span class="c">POETRY</span><b>Weather for Beginners</b></div>
+            <div class="t"><b>Weather for Beginners</b><span>Jonas Petterson · ★ 4.9</span></div>
+            <div class="pr">$19</div>
+          </div>
+          <div class="lrow">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#8B5CF6,#6D3EE0)"><span class="c">FANTASY</span><b>The Night Librarians</b></div>
+            <div class="t"><b>The Night Librarians</b><span>Zadie Wren · ★ 4.7</span></div>
+            <div class="pr">$25</div>
+          </div>
+          <div class="lrow">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#FFC53D,#E8A61B); color:var(--ink)"><span class="c">STORIES</span><b>How to Hold a Door</b></div>
+            <div class="t"><b>How to Hold a Door</b><span>M. K. Ansari · ★ 4.5</span></div>
+            <div class="pr">$22</div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div><b>⌂</b>HOME</div>
+          <div class="on"><b>⌕</b>BROWSE</div>
+          <div class="fab"><span>+</span></div>
+          <div><b>♥</b>SHELF</div>
+          <div><b>◔</b>STREAK</div>
+        </div>
+      </div>
+    </div>
+    <span class="cap"><b>03 · BROWSE</b> — /browse</span>
+  </div>
+
+  <!-- 04 book detail -->
+  <div class="slot">
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="scroll">
+          <div class="backrow"><span>← BACK</span><span>♡ SAVE</span></div>
+          <div class="dhero">
+            <div class="mini-cover" style="background:linear-gradient(160deg,#16A75C,#0E7C43)"><span class="c">ESSAYS</span><b>A Field Guide to Vanishing Light</b></div>
+            <h3>A Field Guide to Vanishing Light</h3>
+            <span class="au">T. OKONKWO · TIDELINE PRESS</span>
+            <span class="stars">★★★★★ 4.8</span>
+          </div>
+          <div class="factrow">
+            <div><b>288</b>PAGES</div>
+            <div><b>~6h</b>READ</div>
+            <div><b>A-03</b>IN STORE</div>
+          </div>
+          <div class="note">
+            <p>“Read it twice. Folded eleven corners. I regret nothing.”</p>
+            <span>AMINA · HEAD BOOKSELLER</span>
+          </div>
+          <div class="buyrow">
+            <div class="pr">$26</div>
+            <span class="chunk">Add to bag</span>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div><b>⌂</b>HOME</div>
+          <div class="on"><b>⌕</b>BROWSE</div>
+          <div class="fab"><span>+</span></div>
+          <div><b>♥</b>SHELF</div>
+          <div><b>◔</b>STREAK</div>
+        </div>
+      </div>
+    </div>
+    <span class="cap"><b>04 · BOOK DETAIL</b> — /book/9462</span>
+  </div>
+
+  <!-- 05 streak -->
+  <div class="slot">
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="scroll">
+          <div class="sk">
+            <img class="mascot" src="logo/mascot.svg" alt="Folio celebrates">
+            <div class="big">27</div>
+            <div class="lbl">DAY STREAK · PERSONAL BEST</div>
+          </div>
+          <div class="cal" role="img" aria-label="July calendar with 27 days logged">
+            <div class="m"><span>JULY 2026</span><b>3 DAYS TO 30% OFF</b></div>
+            <div class="days">
+              <span class="lit">1</span><span class="lit">2</span><span class="lit">3</span><span class="lit">4</span><span class="lit">5</span><span class="lit">6</span><span class="lit">7</span>
+              <span class="lit">8</span><span class="lit">9</span><span class="lit">10</span><span class="lit">11</span><span class="lit">12</span><span class="lit">13</span><span class="lit">14</span>
+              <span class="lit">15</span><span class="lit">16</span><span class="lit">17</span><span class="lit">18</span><span class="lit">19</span><span class="lit">20</span><span class="lit">21</span>
+              <span class="lit">22</span><span class="lit">23</span><span class="lit">24</span><span class="lit">25</span><span class="lit">26</span><span class="lit">27</span><span class="today">28</span>
+            </div>
+          </div>
+          <div class="reward-strip">
+            <div><b>7</b>10% OFF ✓</div>
+            <div><b>30</b>30% OFF</div>
+            <div class="locked"><b>100</b>FREE BOOK</div>
+          </div>
+          <span class="chunk">Log today's pages</span>
+        </div>
+        <div class="tabbar">
+          <div><b>⌂</b>HOME</div>
+          <div><b>⌕</b>BROWSE</div>
+          <div class="fab"><span>+</span></div>
+          <div><b>♥</b>SHELF</div>
+          <div class="on"><b>◔</b>STREAK</div>
+        </div>
+      </div>
+    </div>
+    <span class="cap"><b>05 · STREAK</b> — /streak</span>
+  </div>
+
+  <!-- 06 profile -->
+  <div class="slot">
+    <div class="phone">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><span>●●●</span></div>
+        <div class="scroll">
+          <div class="prof-head">
+            <div class="av">Y</div>
+            <div>
+              <b>Yusuf</b>
+              <span>MEMBER SINCE 2024 · Nº 0047</span>
+            </div>
+          </div>
+          <div class="statgrid">
+            <div><b>27</b>STREAK</div>
+            <div><b>14</b>BOOKS READ</div>
+            <div><b>3.9k</b>PAGES</div>
+          </div>
+          <div class="h-row"><b>Badges</b><span>4 OF 12</span></div>
+          <div class="badges">
+            <div class="earned"><span class="em">🔥</span>WEEK ONE</div>
+            <div class="earned"><span class="em">🌙</span>NIGHT OWL</div>
+            <div class="earned"><span class="em">🐶</span>FOLIO'S PICK</div>
+            <div><span class="em">🏆</span>100 DAYS</div>
+          </div>
+          <div class="h-row"><b>Settings</b><span></span></div>
+          <div class="setrow">
+            <div>Reading reminder <span>8:00 PM ›</span></div>
+            <div>Streak freeze <span>1 available ›</span></div>
+            <div>Notifications <span>On ›</span></div>
+            <div>Sign out <span>›</span></div>
+          </div>
+        </div>
+        <div class="tabbar">
+          <div><b>⌂</b>HOME</div>
+          <div><b>⌕</b>BROWSE</div>
+          <div class="fab"><span>+</span></div>
+          <div class="on"><b>♥</b>SHELF</div>
+          <div><b>◔</b>STREAK</div>
+        </div>
+      </div>
+    </div>
+    <span class="cap"><b>06 · PROFILE</b> — /profile</span>
+  </div>
+
+</div>
+
+</body>
+</html>

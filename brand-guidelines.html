@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dogear — Brand Guidelines</title>
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --leaf: #16A75C; --forest: #0E7C43; --sprout: #DCF5E7; --sunny: #FFC53D;
+    --ink: #14181F; --slate: #5A6472; --cloud: #FFFFFF; --mist: #F4F7F5; --border: #E3E9E5;
+    --coral: #FF6B6B; --violet: #8B5CF6; --sky: #38BDF8;
+    --display: "Fredoka", "Trebuchet MS", "Segoe UI", sans-serif;
+    --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body { background: var(--cloud); color: var(--ink); font-family: var(--body); font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 3px solid var(--sunny); outline-offset: 3px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.01em; }
+  .kicker { display: inline-block; font-weight: 800; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); background: var(--sprout); border-radius: 999px; padding: 6px 14px; }
+
+  .masthead { border-bottom: 2px solid var(--mist); padding: 22px 0; }
+  .masthead .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .masthead .brand { display: flex; align-items: center; gap: 10px; }
+  .masthead .brand img { height: 44px; }
+  .masthead .brand .bw { font-family: var(--display); font-weight: 600; font-size: 28px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .lockup { display: flex; align-items: center; gap: 12px; }
+  .lockup img { height: 48px; }
+  .lockup .bw { font-family: var(--display); font-weight: 600; font-size: 32px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .lockup-stacked { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .lockup-stacked img { height: 96px; }
+  .lockup-stacked .bw { font-family: var(--display); font-weight: 600; font-size: 30px; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .lockup-stacked .bs { font-weight: 800; font-size: 11px; letter-spacing: 0.5em; padding-left: 0.5em; color: var(--slate); }
+  .masthead .doc { font-weight: 800; font-size: 12px; color: var(--slate); letter-spacing: 0.1em; text-align: right; }
+
+  .cover { padding: clamp(56px, 8vw, 96px) 0; }
+  .cover h1 { font-family: var(--display); font-weight: 600; font-size: clamp(40px, 6.5vw, 76px); line-height: 1.04; letter-spacing: -0.015em; margin: 18px 0 20px; max-width: 15ch; }
+  .cover h1 em { font-style: normal; color: var(--leaf); }
+  .cover p { color: var(--slate); font-size: 19px; max-width: 56ch; }
+
+  section { padding: clamp(48px, 7vw, 80px) 0; border-top: 2px solid var(--mist); }
+  .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .num { font-family: var(--display); font-weight: 600; font-size: 15px; background: var(--ink); color: var(--sunny); border-radius: 10px; padding: 4px 12px; }
+  .lede { color: var(--slate); max-width: 64ch; margin-bottom: 34px; }
+
+  /* psychology */
+  .psy { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .psy-card { border: 2px solid var(--border); border-radius: 22px; padding: 28px; }
+  .psy-card h3 { font-family: var(--display); font-weight: 600; font-size: 21px; margin-bottom: 12px; }
+  .psy-card h3 span { color: var(--leaf); }
+  .psy-card ul { list-style: none; display: grid; gap: 10px; }
+  .psy-card li { font-size: 15px; color: var(--slate); padding-left: 26px; position: relative; }
+  .psy-card li::before { content: "→"; position: absolute; left: 0; color: var(--sunny); font-weight: 900; }
+  .psy-card li b { color: var(--ink); }
+
+  /* logo */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .cell { background: var(--mist); border-radius: 20px; padding: 32px 22px 18px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .cell.dark { background: var(--ink); }
+  .cell img { max-width: 100%; }
+  .cell .cap { font-weight: 800; font-size: 11px; letter-spacing: 0.12em; color: var(--slate); align-self: flex-start; text-transform: uppercase; }
+  .cell.dark .cap { color: #8A93A5; }
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 24px; }
+  .rule { border-left: 4px solid var(--leaf); padding: 4px 0 4px 16px; font-size: 15px; color: var(--slate); }
+  .rule strong { color: var(--ink); display: block; margin-bottom: 3px; }
+  .rule.dont { border-left-color: var(--coral); }
+
+  /* color */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+  .sw { border-radius: 18px; overflow: hidden; border: 2px solid var(--border); }
+  .sw .chip { height: 110px; }
+  .sw dl { padding: 12px 14px 14px; }
+  .sw dt { font-family: var(--display); font-weight: 600; font-size: 17px; }
+  .sw dd { font-weight: 700; font-size: 12px; color: var(--slate); margin-top: 2px; line-height: 1.5; }
+  .ratio { display: flex; height: 40px; border-radius: 12px; overflow: hidden; margin-top: 28px; border: 2px solid var(--border); }
+  .ratio div { display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 11px; }
+  .ratio-note { font-weight: 800; font-size: 12px; color: var(--slate); letter-spacing: 0.1em; margin-top: 10px; }
+  .support-row { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+  .support-row span { font-weight: 800; font-size: 12px; color: #fff; border-radius: 999px; padding: 8px 16px; }
+
+  /* type */
+  .spec { background: var(--mist); border-radius: 20px; padding: 30px; margin-bottom: 16px; display: grid; grid-template-columns: 190px 1fr; gap: 26px; align-items: center; }
+  .spec .meta { font-weight: 700; font-size: 12.5px; color: var(--slate); line-height: 1.7; }
+  .spec .meta b { color: var(--ink); font-weight: 900; display: block; font-size: 14px; }
+  .fredoka-demo { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 4vw, 42px); line-height: 1.12; letter-spacing: -0.01em; }
+  .fredoka-demo em { font-style: normal; color: var(--leaf); }
+  .nunito-demo { font-size: 17px; line-height: 1.65; max-width: 52ch; font-weight: 600; }
+  .scale-row { display: flex; align-items: baseline; gap: 22px; padding: 13px 0; border-bottom: 2px solid var(--mist); }
+  .scale-row .tag { font-weight: 900; font-size: 11px; color: var(--slate); width: 140px; flex-shrink: 0; letter-spacing: 0.1em; }
+
+  /* components */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .comp { border: 2px solid var(--border); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .comp h4 { font-family: var(--display); font-weight: 600; font-size: 17px; }
+  .comp p { font-size: 13.5px; color: var(--slate); }
+  .btn { display: inline-block; font-weight: 800; font-size: 15px; color: #fff; background: var(--leaf); border: none; cursor: pointer; border-radius: 14px; padding: 12px 24px; box-shadow: 0 5px 0 var(--forest); transition: transform 0.1s, box-shadow 0.1s; }
+  .btn:active { transform: translateY(5px); box-shadow: 0 0 0 var(--forest); }
+  .btn.sun { background: var(--sunny); color: var(--ink); box-shadow: 0 5px 0 #D9A222; }
+  .btn.sun:active { box-shadow: 0 0 0 #D9A222; }
+  .btn.ghost { background: var(--cloud); color: var(--ink); border: 2px solid var(--border); box-shadow: 0 5px 0 var(--border); }
+  .btn.ghost:active { box-shadow: 0 0 0 var(--border); }
+  .fold-demo { position: relative; width: 100%; background: var(--mist); border-radius: 16px; padding: 18px; overflow: hidden; font-weight: 800; font-size: 13px; color: var(--slate); }
+  .fold-demo::after { content: ""; position: absolute; top: 0; right: 0; border-style: solid; border-width: 0 30px 30px 0; border-color: var(--sunny) var(--cloud) transparent transparent; }
+  .streak-demo-pill { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; border-radius: 999px; padding: 9px 18px; font-weight: 800; font-size: 13px; }
+  .streak-demo-pill .n { font-family: var(--display); font-size: 18px; color: var(--sunny); }
+  .chipx { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13px; border-radius: 999px; padding: 8px 16px; background: var(--sprout); color: var(--forest); border: 2px solid var(--leaf); }
+
+  /* voice */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .voice { border: 2px solid var(--border); border-radius: 20px; padding: 24px; }
+  .voice .lbl { font-weight: 900; font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px; display: block; }
+  .voice.say .lbl { color: var(--forest); }
+  .voice.not .lbl { color: var(--coral); }
+  .voice p { font-family: var(--display); font-weight: 500; font-size: 19px; line-height: 1.35; }
+  .voice.not p { color: var(--slate); text-decoration: line-through; text-decoration-color: var(--coral); }
+  .voice small { display: block; margin-top: 10px; font-size: 13.5px; color: var(--slate); font-weight: 700; }
+
+  /* motion & a11y */
+  .list-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .lc { background: var(--mist); border-radius: 20px; padding: 24px; }
+  .lc h4 { font-family: var(--display); font-weight: 600; font-size: 17px; margin-bottom: 8px; }
+  .lc p { font-size: 14px; color: var(--slate); }
+
+  footer { border-top: 2px solid var(--mist); padding: 36px 0 56px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  footer p { font-weight: 800; font-size: 12px; color: var(--slate); letter-spacing: 0.08em; }
+  footer nav a { font-weight: 800; font-size: 13px; margin-left: 18px; border-bottom: 3px solid var(--sunny); padding-bottom: 2px; }
+
+  @media (max-width: 720px) {
+    .psy, .voice-grid { grid-template-columns: 1fr; }
+    .spec { grid-template-columns: 1fr; gap: 14px; }
+    .masthead .doc { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand"><img src="logo/mascot.svg" alt=""><span class="bw">dogear</span></div>
+    <div class="doc">BRAND GUIDELINES · V2.0<br>ISSUED 17 JUL 2026</div>
+  </div>
+</header>
+
+<div class="cover">
+  <div class="wrap">
+    <span class="kicker">IDENTITY SYSTEM · V2</span>
+    <h1>One color. One dog. <em>One habit.</em></h1>
+    <p>dogear is a neighborhood bookstore built like the brands people can't quit:
+    Apple's clarity, Duolingo's charm. This document is the rulebook — the mascot,
+    the green, the type, the components, and the psychology that makes it all stick.</p>
+  </div>
+</div>
+
+<section id="psychology">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">00</span><h2>Brand psychology</h2></div>
+    <p class="lede">Before pixels: the two playbooks this identity borrows from, and
+    the rule each one gives us.</p>
+    <div class="psy">
+      <div class="psy-card">
+        <h3>From <span>Duolingo</span> — be a friend, not a store</h3>
+        <ul>
+          <li><b>A mascot people root for.</b> Folio is the brand's face, voice, and guilt trip. He appears wherever motivation is needed.</li>
+          <li><b>Habit loops beat campaigns.</b> The reading streak is the product. Green calendar squares are the most persuasive design element we own.</li>
+          <li><b>Tactile UI.</b> Chunky buttons that physically press down. Interfaces should feel like toys that respect you.</li>
+          <li><b>Cheerful menace.</b> The voice teases, never shames. "Folio noticed you didn't read yesterday. Folio remembers."</li>
+        </ul>
+      </div>
+      <div class="psy-card">
+        <h3>From <span>Apple</span> — restraint is the luxury</h3>
+        <ul>
+          <li><b>One idea per screen.</b> Every page has a single hero message set huge. Everything else steps back.</li>
+          <li><b>White is a color.</b> Generous space around everything. If a layout feels empty, it's probably right.</li>
+          <li><b>One accent, disciplined.</b> Green means action and progress. Yellow marks the special. Nothing else shouts.</li>
+          <li><b>Words like a human.</b> Short, concrete, benefit-first. "Read daily. Get rewarded." — never "Unlock synergies."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01</span><h2>Logo &amp; mascot</h2></div>
+    <p class="lede">Folio — a green dog with one folded ear — is both mascot and mark.
+    The folded ear is the old dog-ear device made alive, always lined in sunny yellow.
+    The wordmark sets “dogear” lowercase in Fredoka, friendly and unbreakable.</p>
+    <div class="logo-grid">
+      <div class="cell"><div class="lockup"><img src="logo/mascot.svg" alt="Folio"><span class="bw">dogear</span></div><span class="cap">Primary lockup</span></div>
+      <div class="cell"><div class="lockup-stacked"><img src="logo/mascot.svg" alt="Folio"><span class="bw">dogear</span><span class="bs">BOOKS</span></div><span class="cap">Stacked · centered uses</span></div>
+      <div class="cell"><img src="logo/mascot.svg" alt="Folio the mascot" style="height:120px"><span class="cap">Folio · full color</span></div>
+      <div class="cell"><img src="logo/app-icon.svg" alt="App icon" style="height:96px"><span class="cap">App icon tile</span></div>
+      <div class="cell"><img src="logo/logo-mono-ink.svg" alt="One-color ink mark" style="height:110px"><span class="cap">One-color · ink</span></div>
+      <div class="cell dark"><img src="logo/logo-mono-paper.svg" alt="One-color white mark on dark" style="height:110px"><span class="cap">One-color · white on dark</span></div>
+    </div>
+    <div class="rules">
+      <div class="rule"><strong>Clearspace</strong>Keep one ear-height of space around Folio and the lockup on all sides.</div>
+      <div class="rule"><strong>Minimum size</strong>Mascot: 24 px. Lockup: 100 px wide. Smaller than that, use the favicon face.</div>
+      <div class="rule dont"><strong>Never</strong>Recolor Folio, flip him (the folded ear stays on his left), give him accessories, or set the wordmark in another face.</div>
+    </div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">02</span><h2>Color</h2></div>
+    <p class="lede">Pages of a book are called leaves — so the brand color is a
+    confident leaf green. Green means go, grow, and “keep your streak.” Yellow is
+    the fold: reserved for what's special. Everything lives on white.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#16A75C"></div><dl><dt>Leaf</dt><dd>#16A75C · The brand. Buttons, heroes, progress</dd></dl></div>
+      <div class="sw"><div class="chip" style="background:#0E7C43"></div><dl><dt>Forest</dt><dd>#0E7C43 · Depth, hovers, button shadows</dd></dl></div>
+      <div class="sw"><div class="chip" style="background:#DCF5E7"></div><dl><dt>Sprout</dt><dd>#DCF5E7 · Tints, success, soft panels</dd></dl></div>
+      <div class="sw"><div class="chip" style="background:#FFC53D"></div><dl><dt>Sunny</dt><dd>#FFC53D · The fold. Stars, streaks, highlights</dd></dl></div>
+      <div class="sw"><div class="chip" style="background:#14181F"></div><dl><dt>Ink</dt><dd>#14181F · Text, dark panels</dd></dl></div>
+      <div class="sw"><div class="chip" style="background:#F4F7F5; border-bottom:2px solid var(--border)"></div><dl><dt>Mist</dt><dd>#F4F7F5 · Alt sections, inputs</dd></dl></div>
+    </div>
+    <div class="ratio" role="img" aria-label="Usage ratio: white 60 percent, green 20 percent, ink 12 percent, yellow 8 percent">
+      <div style="flex:60; background:#fff; color:var(--slate)">WHITE 60</div>
+      <div style="flex:20; background:#16A75C; color:#fff">LEAF 20</div>
+      <div style="flex:12; background:#14181F; color:#fff">12</div>
+      <div style="flex:8; background:#FFC53D; color:var(--ink)">8</div>
+    </div>
+    <p class="ratio-note">SUPPORT SET — GENRE CHIPS &amp; COVERS ONLY, NEVER FOR UI:</p>
+    <div class="support-row">
+      <span style="background:#FF6B6B">CORAL · FICTION</span>
+      <span style="background:#8B5CF6">VIOLET · FANTASY</span>
+      <span style="background:#38BDF8">SKY · POETRY</span>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">03</span><h2>Typography</h2></div>
+    <p class="lede">Two voices, both rounded, both warm. Fredoka shouts the one big
+    idea; Nunito handles everything else without ever feeling cold.</p>
+    <div class="spec">
+      <div class="meta"><b>Fredoka</b>Display &amp; wordmark<br>Weights 500–600<br>Tight leading, −1% tracking</div>
+      <div class="fredoka-demo">Reading, made <em>a habit.</em></div>
+    </div>
+    <div class="spec">
+      <div class="meta"><b>Nunito</b>Body &amp; UI · 400–900<br>16.5px / 1.6 base<br>800+ for labels &amp; buttons</div>
+      <div class="nunito-demo">Every book on our tables was picked by a bookseller, on purpose.
+      Come in for the one you wanted; leave with the one you didn't know about yet.</div>
+    </div>
+    <div>
+      <div class="scale-row"><span class="tag">DISPLAY / 72</span><span style="font-family:var(--display); font-weight:600; font-size:clamp(30px,5vw,52px); letter-spacing:-0.015em;">Don't break the chain</span></div>
+      <div class="scale-row"><span class="tag">H2 / 40</span><span style="font-family:var(--display); font-weight:600; font-size:clamp(22px,3vw,30px);">New this week</span></div>
+      <div class="scale-row"><span class="tag">BODY / 16.5</span><span style="font-weight:600;">New titles land every Tuesday. The good ones go fast.</span></div>
+      <div class="scale-row"><span class="tag">LABEL / 13</span><span style="font-weight:900; font-size:13px; letter-spacing:0.14em; color:var(--forest);">STREAK MILESTONE · 30 DAYS</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="components">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">04</span><h2>Components</h2></div>
+    <p class="lede">Four signature parts, used identically on web, mobile, and social.
+    If a component isn't on this list, it should look quiet.</p>
+    <div class="comp-grid">
+      <div class="comp">
+        <h4>Chunky press buttons</h4>
+        <p>Solid fill, 5px darker bottom shadow, and they physically depress on click.
+        Try it. Green = primary, yellow = celebration, ghost = secondary.</p>
+        <button class="btn">Browse books</button>
+        <button class="btn sun">Claim reward</button>
+        <button class="btn ghost">Maybe later</button>
+      </div>
+      <div class="comp">
+        <h4>The fold</h4>
+        <p>The sunny folded corner survives from v1 — it still means "worth marking."
+        One fold per view, on featured cards only.</p>
+        <div class="fold-demo">STAFF PICK OF THE WEEK</div>
+      </div>
+      <div class="comp">
+        <h4>Streak counter</h4>
+        <p>The number is always Fredoka, always yellow on dark. Green squares fill
+        calendars and week rows. Never show an empty streak without encouragement.</p>
+        <span class="streak-demo-pill"><span class="n">27</span> day streak</span>
+      </div>
+      <div class="comp">
+        <h4>Genre chips</h4>
+        <p>Rounded pills with a support-color dot. Selected chips go sprout-green.
+        Support colors never leave the chips and covers.</p>
+        <span class="chipx">● Fantasy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="voice">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05</span><h2>Voice</h2></div>
+    <p class="lede">A well-read friend with a dog's enthusiasm. Short sentences.
+    Concrete facts. Folio may tease; the shop never guilt-trips about money.</p>
+    <div class="voice-grid">
+      <div class="voice say"><span class="lbl">WE SAY</span><p>3 more days until 30% off. You've got this.</p><small>Progress, stated as encouragement.</small></div>
+      <div class="voice not"><span class="lbl">NOT THIS</span><p>Complete your streak journey to unlock exclusive savings!</p><small>No journeys. No unlocking. No exclamation inflation.</small></div>
+      <div class="voice say"><span class="lbl">WE SAY</span><p>Folio noticed you didn't read yesterday. Folio remembers.</p><small>Cheerful menace — the Duolingo inheritance.</small></div>
+      <div class="voice not"><span class="lbl">NOT THIS</span><p>Your reading performance has declined this week.</p><small>We're a bookstore, not a quarterly review.</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="motion">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">06</span><h2>Motion, responsiveness &amp; access</h2></div>
+    <p class="lede">The quality floor. None of this is optional, on any surface.</p>
+    <div class="list-cards">
+      <div class="lc"><h4>Motion</h4><p>Buttons press (100ms), cards lift (160ms), nothing else moves without purpose.
+      All motion respects <b>prefers-reduced-motion</b>.</p></div>
+      <div class="lc"><h4>Responsive</h4><p>Fluid type via clamp(). Grids: 4 → 3 → 2 columns; heroes stack under 900px;
+      buttons go full-width under 440px. No horizontal scroll, ever.</p></div>
+      <div class="lc"><h4>Contrast</h4><p>Body text is ink on white (15:1). White on Leaf is reserved for large bold
+      text; small text on green uses Forest or moves to a white panel.</p></div>
+      <div class="lc"><h4>Focus</h4><p>Every interactive element shows a 3px sunny outline on keyboard focus.
+      The fun is optional; the keyboard is not.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>DOGEAR BOOKS · BRAND GUIDELINES V2.0 · SAMPLE CONCEPT</p>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="website/home.html">Website</a>
+      <a href="mobile-design.html">Mobile</a>
+      <a href="social-media.html">Social</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

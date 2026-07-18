@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 130" width="880" height="130" role="img" aria-label="dogear color palette">
+  <style>text { font-family: 'Segoe UI', Arial, sans-serif; font-weight: 700; }</style>
+  <g>
+    <rect x="0" y="0" width="110" height="130" fill="#16A75C"/>
+    <text x="12" y="102" font-size="13" fill="#FFFFFF">Leaf</text>
+    <text x="12" y="118" font-size="10" fill="#DCF5E7">#16A75C</text>
+  </g>
+  <g>
+    <rect x="110" y="0" width="110" height="130" fill="#0E7C43"/>
+    <text x="122" y="102" font-size="13" fill="#FFFFFF">Forest</text>
+    <text x="122" y="118" font-size="10" fill="#DCF5E7">#0E7C43</text>
+  </g>
+  <g>
+    <rect x="220" y="0" width="110" height="130" fill="#DCF5E7"/>
+    <text x="232" y="102" font-size="13" fill="#0E7C43">Sprout</text>
+    <text x="232" y="118" font-size="10" fill="#5A6472">#DCF5E7</text>
+  </g>
+  <g>
+    <rect x="330" y="0" width="110" height="130" fill="#FFC53D"/>
+    <text x="342" y="102" font-size="13" fill="#14181F">Sunny</text>
+    <text x="342" y="118" font-size="10" fill="#7A5C10">#FFC53D</text>
+  </g>
+  <g>
+    <rect x="440" y="0" width="110" height="130" fill="#14181F"/>
+    <text x="452" y="102" font-size="13" fill="#FFFFFF">Ink</text>
+    <text x="452" y="118" font-size="10" fill="#B8BFCA">#14181F</text>
+  </g>
+  <g>
+    <rect x="550" y="0" width="110" height="130" fill="#5A6472"/>
+    <text x="562" y="102" font-size="13" fill="#FFFFFF">Slate</text>
+    <text x="562" y="118" font-size="10" fill="#E3E9E5">#5A6472</text>
+  </g>
+  <g>
+    <rect x="660" y="0" width="110" height="130" fill="#F4F7F5"/>
+    <text x="672" y="102" font-size="13" fill="#14181F">Mist</text>
+    <text x="672" y="118" font-size="10" fill="#5A6472">#F4F7F5</text>
+  </g>
+  <g>
+    <rect x="770" y="0" width="110" height="130" fill="#FFFFFF" stroke="#E3E9E5" stroke-width="2"/>
+    <text x="782" y="102" font-size="13" fill="#14181F">Cloud</text>
+    <text x="782" y="118" font-size="10" fill="#5A6472">#FFFFFF</text>
+  </g>
+  <!-- sunny fold on the strip corner -->
+  <path d="M846 0 L880 34 L880 0 Z" fill="#FFC53D" transform="translate(0 0)"/>
+</svg>
