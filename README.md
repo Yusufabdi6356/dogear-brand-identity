@@ -43,10 +43,34 @@ The responsive website has nine pages and a shared design system:
 | [Sign in](website/signin.html) | Returning reader account entry |
 | [Sign up](website/signup.html) | New reader registration flow |
 
-<div align="center">
-  <a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/shop.html"><img src="screenshots/shop.png" alt="dogear shop page" width="440"></a>
-  <a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/rewards.html"><img src="screenshots/rewards.png" alt="dogear rewards page" width="440"></a>
-</div>
+## Visual gallery
+
+### Responsive website
+
+<table>
+  <tr>
+    <td align="center" width="33%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/home.html"><img src="screenshots/home.png" alt="dogear home page" width="100%"></a><br><b>Home</b></td>
+    <td align="center" width="33%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/home.html?theme=dark"><img src="screenshots/home-dark.png" alt="dogear home page in dark mode" width="100%"></a><br><b>Dark mode</b></td>
+    <td align="center" width="33%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/home.html"><img src="screenshots/home-mobile.png" alt="dogear home page on mobile" width="100%"></a><br><b>Mobile layout</b></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/shop.html"><img src="screenshots/shop.png" alt="dogear shop page" width="100%"></a><br><b>Shop</b></td>
+    <td align="center"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/website/rewards.html"><img src="screenshots/rewards.png" alt="dogear rewards page" width="100%"></a><br><b>Rewards</b></td>
+  </tr>
+</table>
+
+### Brand deliverables
+
+<table>
+  <tr>
+    <td align="center" width="50%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/mobile-design.html"><img src="screenshots/mobile-app.png" alt="dogear mobile app screens" width="100%"></a><br><b>Mobile app concept</b></td>
+    <td align="center" width="50%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/social-media.html"><img src="screenshots/social.png" alt="dogear social media templates" width="100%"></a><br><b>Social media system</b></td>
+  </tr>
+  <tr>
+    <td align="center" width="50%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/brand-guidelines.html"><img src="screenshots/guidelines.png" alt="dogear brand guidelines" width="100%"></a><br><b>Brand guidelines</b></td>
+    <td align="center" width="50%"><a href="https://yusufabdi6356.github.io/dogear-brand-identity/pitch.html"><img src="screenshots/pitch.png" alt="dogear pitch page" width="100%"></a><br><b>Project pitch</b></td>
+  </tr>
+</table>
 
 ### Interface features
 
